@@ -64,3 +64,45 @@ async function obtenerPais(countryName) {
     }
 }
 obtenerPais('Spain');
+
+
+console.log("EJERCICIO 5");
+function buscarProducto(nombre) {
+    try {
+        const data = fs.readFileSync('productos.json', 'utf8');
+        const productos = JSON.parse(data);
+        const encontrado = productos.find(p => p.nombre && p.nombre.toLowerCase() === String(nombre).toLowerCase());
+        if (encontrado) {
+            return { nombre: encontrado.nombre, precio: encontrado.precio, existe: true };
+        } else {
+            return { nombre, precio: null, existe: false };
+        }
+    } catch (err) {
+        console.error('Error en buscarProducto:', err);
+        return { nombre, precio: null, existe: false };
+    }
+}
+console.log(buscarProducto('Mouse'));
+console.log(buscarProducto('noExiste'));
+console.log("\n\n");
+
+
+console.log("EJERCICIO 6");
+function archivoCSV() {
+    fs.readFile('productos.json', 'utf8', (err, data) => {
+        if (err) throw err;
+        const productos = JSON.parse(data);
+        let csv = 'nombre,precio\n';
+        productos.forEach(prod => {
+            csv += `${prod.nombre},${prod.precio}\n`;
+        });
+        fs.writeFile('productos.csv', csv, (err) => {
+            if (err) throw err;
+            console.log('Archivo CSV creado correctamente.');
+            const data = fs.readFileSync('productos.csv', 'utf8');
+            console.log(data);
+        });
+    });
+}
+archivoCSV();
+console.log("\n\n");
