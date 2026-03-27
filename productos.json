@@ -125,7 +125,17 @@
     "precio": 10.99
   },
   {
-    "id": 26,
+    "id": 29,
+    "nombre": "LOL",
+    "precio": 10.99
+  },
+  {
+    "id": 30,
+    "nombre": "LOL",
+    "precio": 10.99
+  },
+  {
+    "id": 31,
     "nombre": "LOL",
     "precio": 10.99
   }

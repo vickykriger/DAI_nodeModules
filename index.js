@@ -1,5 +1,6 @@
 import fs from 'fs';
 import dayjs from 'dayjs';
+import Texto from './models/texto.js';
 
 
 console.log("EJERCICIO 1");
@@ -105,4 +106,49 @@ function archivoCSV() {
     });
 }
 archivoCSV();
+console.log("\n\n");
+
+
+console.log("EJERCICIO 7");
+function temporizador() {
+    let contador = 0;
+    const intervalo = setInterval(() => {
+        contador++;
+        console.log(contador);
+        if (contador === 10) {
+            clearInterval(intervalo);
+            console.log("Fin del contador");
+        }
+    }, 1000);
+}
+temporizador();
+console.log("\n\n");
+
+
+console.log("EJERCICIO 8");
+function analizarTexto(texto) {
+    const caracteres = texto.length;
+    let cant = texto.trim().split(/\s+/);
+    let palabras = cant.length;
+    const vocales = (texto.match(/[aeiou]/gi)).length;
+    const consonantes = (texto.match(/[bcdfghjklmnpqrstvwxyz]/gi)).length;
+    return new Texto(caracteres, palabras, vocales, consonantes);
+}
+const texto = analizarTexto("Hola Mundo");
+console.log(`Caracteres: ${texto.caracteres}\nPalabras: ${texto.palabras}\nVocales: ${texto.vocales}\nConsonantes: ${texto.consonantes}`);
+console.log("\n\n");
+
+
+console.log("EJERCICIO 9");
+function validarPassword(password) {
+    let passwordBien = false;
+    if (password.length >= 8 && /\d/.test(password) && /[A-Z]/.test(password)) {
+        passwordBien = true;
+    }
+    return passwordBien;
+}
+console.log(validarPassword('Abcdef1g'));
+console.log(validarPassword('abcdef1g'));
+console.log(validarPassword('Abcdefgh'));
+console.log(validarPassword('Ab1g'));
 console.log("\n\n");
